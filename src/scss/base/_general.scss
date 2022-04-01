@@ -1,30 +1,36 @@
 html {
     font-size: 16px;
     font-weight: 400;
-	font-family: 'Europa', sans-serif;
+	font-family: 'Poppins', sans-serif;
 	color: #000;
 }
 
 // Указываем размер основного контейнера для сайта
 .container {
 	position: relative;
-	width: 1140px;
+	width: 1110px;
 	margin: 0 auto;
+	@include r(xl) {
+		width: 960px;
+	}
+	@include r(xl) {
+		width: 720px;
+	}
+	@include r(xl) {
+		width: 540px;
+	}
+	@include r(xl) {
+		width: 100%;
+		padding: 0 10px;
+	}
 }
-
-.main__img {
-	width: 200px;
-}
-
-
-
 
 // @ Добавляем класс к тегу body, а также класс к основной части сайта, не включающей header и footer, для того, чтобы прижимать footer к нижней части страницы @ //
 .body {
 	display: flex;
     min-height: 100vh;
     flex-direction: column;
-	// background: linear-gradient(252.91deg, #E3E7F6 3.68%, rgba(227, 231, 246, 0) 97.82%);
+	background: #1C1B21;
 }
 .content {
 	flex: 1;

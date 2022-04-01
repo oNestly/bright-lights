@@ -28,13 +28,14 @@ import { copy } from './gulp/tasks/copy.js';
 import { server } from './gulp/tasks/server.js';
 
 const fonts = gulp.series(otfToTtf, ttfToWoff, fontStyle);
+const allImg = gulp.series(images, webp);
 
 // Наблюдатель за изменениями в файлах
 function watcher() {
   gulp.watch(path.watch.html, html);
   gulp.watch(path.watch.scss, scss);
   gulp.watch(path.watch.js, scripts);
-  gulp.watch(path.watch.images, images, webp);
+  gulp.watch(path.watch.images, allImg);
   gulp.watch(path.watch.svg, svgSprite);
   gulp.watch(path.watch.fav, favico);
   gulp.watch(path.watch.fonts, fonts);
@@ -43,7 +44,7 @@ function watcher() {
 
 // Последовательная обработка шрифтов
 // Основные задачи
-const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, scripts, images, webp, svgSprite, favico));
+const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, scss, scripts, allImg, svgSprite, favico));
 
 // Построение сценариев выполнения задач
 // ! const deployZIP = gulp.series(reset, mainTasks, zip);
