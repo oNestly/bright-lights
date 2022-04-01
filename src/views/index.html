@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include('./views/@source/head.html', {
+	'file': '.',
+	'title': 'oNestly Art',
+	description: 'new site',
+	keywords: 'keywords',
+	styleFile: '@@file/css/app.css'
+})
+<body class="body">
+
+	<div class="preloader">
+		<div class="spinner-inside"><img class="spinner-inside__img" src="@@file/img/load.gif" alt="loading"></div>
+	</div>
+
+	@@include("./blocks/modules/header/header.html", { "file": "." })
+	<main class="content">
+
+		<h1 class="h1">Добро пожаловать!</h1>
+
+	</main>
+	@@include("./blocks/modules/footer/footer.html", { "file": "." })
+	<script src="./js/app.js"></script>
+
+</body>
+</html>

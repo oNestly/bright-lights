@@ -1,0 +1,58 @@
+html {
+    font-size: 16px;
+    font-weight: 400;
+	font-family: 'Europa', sans-serif;
+	color: #000;
+}
+
+// Указываем размер основного контейнера для сайта
+.container {
+	position: relative;
+	width: 1140px;
+	margin: 0 auto;
+}
+
+.main__img {
+	width: 200px;
+}
+
+
+
+
+// @ Добавляем класс к тегу body, а также класс к основной части сайта, не включающей header и footer, для того, чтобы прижимать footer к нижней части страницы @ //
+.body {
+	display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+	// background: linear-gradient(252.91deg, #E3E7F6 3.68%, rgba(227, 231, 246, 0) 97.82%);
+}
+.content {
+	flex: 1;
+}
+// @ Конец @ //
+
+
+
+
+
+// @ Анимация загрузки сайта @ //
+.preloader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: z("preloader");
+	background: #FFFFFF;
+}
+.spinner-inside {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 75px;
+	&__img {
+		width: 100%;
+	}
+}
+// @ End Анимация загрузки сайта @ //

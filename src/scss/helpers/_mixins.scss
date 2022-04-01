@@ -1,0 +1,99 @@
+// * Миксин для подключения шрифтов,
+// ~ пример: @include font-face('Roboto', 'Roboto', 400, normal);
+
+@mixin font-face($name, $file, $weight: 400, $style: normal) {
+	@font-face {
+		font-family: "#{$name}";
+		src: local("#{$file}"),
+		url('../fonts/#{$file}.woff') format('woff');
+		font-weight: $weight;
+		font-style: $style;
+		font-display: swap;
+	}
+}
+
+
+
+// * Миксин для создания адаптива для классов на "лету",
+// ~ пример: @include r('s');
+
+$breakpoints: (
+	"s": 576px,
+	"m": 768px,
+	"l": 992px,
+	"xl": 1200px,
+	"xxl": 1400px,
+);
+
+$minmax: max;
+
+@mixin r($width, $type: $minmax) {
+	@if map_has_key($breakpoints, $width) {
+		$width: map_get($breakpoints, $width);
+
+		@if $type==$minmax {
+			$width: $width - 0.02px;
+		}
+
+		@media only screen and (#{$type}-width: $width) {
+			@content;
+		}
+	}
+}
+
+
+
+// ~ Миксин для псевдо классов, при использовании ::before и ::after,
+// ~ пример: @include pseudo(inline-block,relative,'next');
+
+@mixin pseudo($display: block, $pos: absolute, $content: '') {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+
+
+// ~ Миксин для шрифтов,
+// ~ пример: ;
+
+@mixin font-size($font-size, $line-height: normal, $letter-spacing: normal) {
+	font-size: $font-size * 1px;
+	// font-size: $font-size * 0.1rem;
+	// example using rem values and 62.5% font-size so 1rem = 10px
+
+	@if $line-height==normal {
+		line-height: normal;
+	}
+
+	@else {
+		line-height: $line-height / $font-size;
+	}
+
+	@if $letter-spacing==normal {
+		letter-spacing: normal;
+	}
+
+	@else {
+		letter-spacing: #{$letter-spacing / $font-size}em;
+	}
+}
+
+
+
+// ~ Миксин для видимости блоков,
+// ~ пример: ;
+
+@mixin fade($type) {
+	@if $type=="hide" {
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility 1s, opacity 1s;
+	}
+
+	@else if $type=="show" {
+		visibility: visible;
+		opacity: 1;
+		transition: visibility 1s, opacity 1s;
+	}
+}

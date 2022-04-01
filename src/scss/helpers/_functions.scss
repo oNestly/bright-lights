@@ -1,0 +1,21 @@
+@function rem($px) {
+    @return ($px / 16)+rem;
+}
+
+@function z($name) {
+    @if index($z-indexes, $name) {
+        @return (length($z-indexes) - index($z-indexes, $name))+1;
+    }
+
+    @else {
+        @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+        @return null;
+    }
+}
+
+// * Функция, которая сама просчитывает z-index. Наверху самый высокий индекс
+// 	Пример использования в файлах стилей: z-index: z("preloader");
+
+$z-indexes: (
+    "preloader",
+);
